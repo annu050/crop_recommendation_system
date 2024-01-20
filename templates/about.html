@@ -1,0 +1,164 @@
+<!--about.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Crop Recommendation System</title>
+    <!--Link to Bootstrap CSS (adjust the path accordingly)-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      /* Custom style for the box around content and image */
+      .about-box {
+         background-color: black;
+          border: 1px solid #ddd;
+          padding: 20px;
+          margin-top: 20px;
+          border-radius: 10px;
+      }
+      .faq-heading-box {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+      .contact-box{
+         border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+      }
+      .footer {
+            background-color: #8ef28e;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+            margin-top: 20px;
+        }
+
+  </style>
+</head>
+<body style="background-color: rgb(236, 247, 248);">
+
+<!--Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Crop Recommendation</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/about">About Us</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container mt-5">
+   <h1 class="mb-4">About Our Crop Recommendation System</h1>
+   <div class="about-box row">
+       <div class="col-md-6">
+           <!-- Image -->
+           <img src="{{url_for('static', filename='img2.jpg')}}"  alt="Team Photo 1" class="img-fluid mb-3">
+       </div>
+       <div class="col-md-6">
+           <!-- Content -->
+           <p style="color: #ddd;">
+               Welcome to our Crop Recommendation System! We are passionate about helping farmers make informed decisions about crop selection.
+           </p>
+
+           <p style="color: #ddd;">
+               Our goal is to provide accurate and personalized recommendations based on various factors such as soil type, climate, and more.
+           </p>
+
+           <p style="color: #ddd;">
+               Feel free to explore our website and make use of our crop recommendation tool to optimize your farming practices.
+               Our website will give you 99% of accurate results which is best for you to grow the crops needed
+           </p>
+           <p style="color: #ddd;">
+            Crop Recommendation Systems stand as catalysts for transforming agriculture into a more efficient, sustainable, and technology-driven industry.
+            </p>
+       </div>
+   </div>
+   
+    <!-- Frequently Asked Questions -->
+    <div class="faq-heading-box">
+      <h2>Frequently Asked Questions</h2>
+
+      <h5>1. How does the crop recommendation system work?</h5>
+      <p>
+          Our system takes into account various factors such as soil type, climate, and historical data to provide personalized crop recommendations.
+      </p>
+
+      <h5>2. Is the system free to use?</h5>
+      <p>
+          Yes, our crop recommendation tool is free to use for all farmers.
+      </p>
+      <div class="faq-form-box mb-4">
+         <h4>Ask a Question:</h4>
+         <form id="questionForm" action="/submit_question" method="post">
+             <div class="form-group">
+                 <label for="question">Your Question:</label>
+                 <input type="text" class="form-control" name="question" id="question" required>
+             </div>
+             <button type="submit" class="btn btn-primary">Submit Question</button>
+         </form>
+     </div>
+
+     <!-- Display User-Submitted Questions -->
+     <div id="userQuestions">
+         <h4>User Questions:</h4>
+         <ul id="questionsList">
+             {% for question in user_questions %}
+                 <li>{{ question }}</li>
+             {% endfor %}
+         </ul>
+     </div>
+ </div>
+     </div>
+    </div>
+    <div class="contact-box">
+      <!-- Contact Information -->
+      <h2>Contact Us:</h2>
+      <p>Email: anusha572003@gmail.com</p>
+      <p>Phone: +91 9672278543</p>
+      <p>Address: 123 Farm Road, Agricultureville</p>
+   </div>
+</div>
+
+<!--footer-->
+<div class="footer text-center">
+   &copy; 2024 crop recommender. All rights reserved.
+</div>
+
+<!-- Bootstrap JS and jQuery (adjust the paths accordingly) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+   function submitQuestion() {
+       var question = document.getElementById('question').value;
+       if (question.trim() === '') {
+           alert('Please enter a question.');
+           return;
+       }
+
+       // Display the question on the page
+       var questionsList = document.getElementById('questionsList');
+       var listItem = document.createElement('li');
+       listItem.textContent = question;
+       questionsList.appendChild(listItem);
+
+       // Clear the form
+       document.getElementById('questionForm').reset();
+   }
+</script>
+</body>
+</html>
+
+
+
+  
+  
